@@ -1,0 +1,7 @@
+{
+  "name": "koalamon/cookiemakerhelper",
+  "description": "PHP lib for handling a cookie maker",
+  "autoload": {
+    "psr-4": {
+      "Koalamon\\CookieMakerHelper\\": "src/"
+    }
