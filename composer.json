@@ -5,3 +5,4 @@
     "psr-4": {
       "Koalamon\\CookieMakerHelper\\": "src/"
     }
+}
