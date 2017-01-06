@@ -10,15 +10,20 @@ class CookieMaker
     {
         $this->executable = $executable;
     }
+
     public function getCookies($session)
     {
+        if ($session == "[]") {
+            return [];
+        }
+
         if (!is_string($session)) {
             $session = json_encode($session);
         }
         $command = $this->executable . " '" . $session . "'";
         exec($command, $output, $result);
 
-        if(empty($output)) {
+        if (empty($output)) {
             return [];
         }
 
@@ -26,6 +31,7 @@ class CookieMaker
 
         return $cookies;
     }
+
     public function getCookieString($session)
     {
         $cookies = $this->getCookies();
