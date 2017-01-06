@@ -17,7 +17,13 @@ class CookieMaker
         }
         $command = $this->executable . " '" . $session . "'";
         exec($command, $output, $result);
+
+        if(empty($output)) {
+            return [];
+        }
+
         $cookies = json_decode($output[0], true);
+
         return $cookies;
     }
     public function getCookieString($session)
