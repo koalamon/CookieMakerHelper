@@ -13,7 +13,7 @@ class CookieMaker
 
     public function getCookies($session)
     {
-        if ($session == "[]") {
+        if ($session == "[]" || $session == "") {
             return [];
         }
 
@@ -34,7 +34,8 @@ class CookieMaker
 
     public function getCookieString($session)
     {
-        $cookies = $this->getCookies();
+        $cookies = $this->getCookies($session);
+
         $cookieString = "";
         foreach ($cookies as $key => $value) {
             $cookieString .= $key . '=' . $value . '; ';
