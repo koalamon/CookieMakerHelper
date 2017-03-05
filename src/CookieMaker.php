@@ -6,6 +6,12 @@ class CookieMaker
 {
     private $executable;
 
+    private static function escapeForCommandLine($string)
+    {
+        $jsonString = str_replace(' ', '##space##', trim($string));
+        return $jsonString;
+    }
+
     public function __construct($executable = './CookieMaker')
     {
         $this->executable = $executable;
@@ -20,7 +26,11 @@ class CookieMaker
         if (!is_string($session)) {
             $session = json_encode($session);
         }
-        $command = $this->executable . " '" . $session . "'";
+
+        $session = $this->escapeForCommandLine("'" . $session . "'");
+
+        $command = $this->executable . " " . $session;
+
         exec($command, $output, $result);
 
         if (empty($output)) {
