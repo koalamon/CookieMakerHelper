@@ -39,6 +39,10 @@ class CookieMaker
 
         $cookies = json_decode($output[0], true);
 
+        if (array_key_exists('status', $cookies) && $cookies['status'] == 'error') {
+            throw new CookieRetrieveException($cookies['message']);
+        }
+
         return $cookies;
     }
 
