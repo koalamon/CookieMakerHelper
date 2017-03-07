@@ -12,7 +12,7 @@ class CookieMaker
         return $jsonString;
     }
 
-    public function __construct($executable = './CookieMaker')
+    public function __construct($executable = 'CookieMaker')
     {
         $this->executable = $executable;
     }
