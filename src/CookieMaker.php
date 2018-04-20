@@ -17,6 +17,11 @@ class CookieMaker
         $this->executable = $executable;
     }
 
+    /**
+     * @param $session
+     * @return array|mixed
+     * @throws CookieRetrieveException
+     */
     public function getCookies($session)
     {
         if ($session == "[]" || $session == "") {
@@ -30,7 +35,7 @@ class CookieMaker
         $session = $this->escapeForCommandLine("'" . $session . "'");
 
         $command = $this->executable . " " . $session;
-
+        // var_dump($command);
         exec($command, $output, $result);
 
         if (empty($output)) {
@@ -46,6 +51,11 @@ class CookieMaker
         return $cookies;
     }
 
+    /**
+     * @param $session
+     * @return string
+     * @throws CookieRetrieveException
+     */
     public function getCookieString($session)
     {
         $cookies = $this->getCookies($session);
